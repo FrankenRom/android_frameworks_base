@@ -4359,6 +4359,12 @@ public final class Settings {
         public static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
 
         /**
+         * Toast icon
+         * @hide
+         */
+        public static final String TOAST_ICON = "toast_icon";
+
+        /**
          * Whether to display sound panel in the power menu
          *
          * @hide
@@ -5233,6 +5239,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_FORMAT);
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_POSITION);
             PRIVATE_SETTINGS.add(FP_WAKE_AND_UNLOCK);
+            PRIVATE_SETTINGS.add(TOAST_ICON);
         }
 
         /**
