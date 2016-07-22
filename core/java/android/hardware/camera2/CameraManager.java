@@ -20,8 +20,8 @@ import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
 import android.annotation.SystemService;
-import android.app.ActivityThread;
 import android.content.Context;
+import android.hardware.Camera;
 import android.hardware.CameraInfo;
 import android.hardware.CameraStatus;
 import android.hardware.ICameraService;
@@ -38,8 +38,6 @@ import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.ServiceSpecificException;
 import android.os.SystemProperties;
-import android.text.TextUtils;
-import android.util.Log;
 import android.util.ArrayMap;
 import android.util.Log;
 
@@ -842,22 +840,9 @@ public final class CameraManager {
                 // Try to make sure we have an up-to-date list of camera devices.
                 connectCameraServiceLocked();
 
-                boolean exposeAuxCamera = false;
-                String packageName = ActivityThread.currentOpPackageName();
-                String packageList = SystemProperties.get("vendor.camera.aux.packagelist");
-                if (packageList.length() > 0) {
-                    TextUtils.StringSplitter splitter = new TextUtils.SimpleStringSplitter(',');
-                    splitter.setString(packageList);
-                    for (String str : splitter) {
-                        if (packageName.equals(str)) {
-                            exposeAuxCamera = true;
-                            break;
-                        }
-                    }
-                }
                 int idCount = 0;
                 for (int i = 0; i < mDeviceStatus.size(); i++) {
-                    if(!exposeAuxCamera && (i == 2)) break;
+                    if ((i == 2) && !Camera.shouldExposeAuxCamera()) break;
                     int status = mDeviceStatus.valueAt(i);
                     if (status == ICameraServiceListener.STATUS_NOT_PRESENT ||
                             status == ICameraServiceListener.STATUS_ENUMERATING) continue;
@@ -866,7 +851,7 @@ public final class CameraManager {
                 cameraIds = new String[idCount];
                 idCount = 0;
                 for (int i = 0; i < mDeviceStatus.size(); i++) {
-                    if(!exposeAuxCamera && (i == 2)) break;
+                    if ((i == 2) && !Camera.shouldExposeAuxCamera()) break;
                     int status = mDeviceStatus.valueAt(i);
                     if (status == ICameraServiceListener.STATUS_NOT_PRESENT ||
                             status == ICameraServiceListener.STATUS_ENUMERATING) continue;
@@ -1006,21 +991,7 @@ public final class CameraManager {
             /* Force to ignore the last mono/aux camera status update
              * if the package name does not falls in this bucket
              */
-            boolean exposeMonoCamera = false;
-            String packageName = ActivityThread.currentOpPackageName();
-            String packageList = SystemProperties.get("vendor.camera.aux.packagelist");
-            if (packageList.length() > 0) {
-                TextUtils.StringSplitter splitter = new TextUtils.SimpleStringSplitter(',');
-                splitter.setString(packageList);
-                for (String str : splitter) {
-                    if (packageName.equals(str)) {
-                        exposeMonoCamera = true;
-                        break;
-                    }
-                }
-            }
-
-            if (exposeMonoCamera == false) {
+            if (!Camera.shouldExposeAuxCamera()) {
                 if (Integer.parseInt(id) >= 2) {
                     Log.w(TAG, "[soar.cts] ignore the status update of camera: " + id);
                     return;
