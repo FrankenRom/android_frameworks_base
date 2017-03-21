@@ -4898,8 +4898,39 @@ public final class Settings {
          * Ticker animation
          * 0: Fade animation
          * 1: Scrolling ticker
+         * @hide
          */
         public static final String STATUS_BAR_TICKER_ANIMATION_MODE = "status_bar_ticker_animation_mode";
+
+        /**
+         * @hide
+         */
+        public static final String START_SCREEN_STATE_SERVICE = "start_screen_state_service";
+
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_TWOG = "screen_state_twog";
+
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_GPS = "screen_state_gps";
+
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_MOBILE_DATA = "screen_state_mobile_data";
+
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_OFF_DELAY = "screen_state_off_delay";
+
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_ON_DELAY = "screen_state_on_delay";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

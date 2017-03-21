@@ -213,13 +213,15 @@
     <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
 
-    <!-- screenrecord -->
+    <!-- Screen record -->
     <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
 
     <!-- Sync tile -->
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
 
+    <!-- Suspend actions -->
+    <protected-broadcast android:name="android.intent.action.SCREEN_STATE_SERVICE_UPDATE" />
 
     <application
         android:name=".SystemUIApplication"
@@ -283,6 +285,13 @@
         <service android:name=".omni.screenrecord.TakeScreenrecordService"
             android:process=":screenrecord"
             android:exported="false" />
+
+        <service android:name=".screenstate.ScreenStateService"
+                android:exported="true" >
+            <intent-filter>
+               <action android:name="android.intent.action.SCREEN_STATE_SERVICE_UPDATE"/>
+            </intent-filter>
+        </service>
 
         <service android:name=".ImageWallpaper"
                 android:permission="android.permission.BIND_WALLPAPER"
