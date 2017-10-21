@@ -56,8 +56,8 @@
     <!-- Dash charging support -->
     <bool name="config_hasDashCharger">false</bool>
 
-  <!-- Whether device has turbo power charging support -->
-  <bool name="config_hasTurboPowerCharger">false</bool>
+    <!-- Whether device has turbo power charging support -->
+    <bool name="config_hasTurboPowerCharger">false</bool>
 
     <!-- Hardware keys present on the device, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
@@ -121,5 +121,8 @@
 	
 	<!-- Whether the device supports Smart Pixels -->
     <bool name="config_enableSmartPixels">false</bool>
+
+    <!-- The duration (in milliseconds) of recent app screen animation. -->
+    <integer name="config_recentDefaultDur">150</integer>
 
 </resources>
