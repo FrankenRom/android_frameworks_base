@@ -255,4 +255,7 @@
     <string name="quick_settings_google_voice_assist_label">Voice assist</string>
     <string name="quick_settings_google_now_label">Google feed</string>
 
+    <!-- Screenshot Delete Toast -->
+    <string name="delete_screenshot_toast">Screenshot deleted</string>
+
 </resources>
