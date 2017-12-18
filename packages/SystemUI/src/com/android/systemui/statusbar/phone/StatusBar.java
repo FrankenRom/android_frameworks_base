@@ -143,6 +143,7 @@ import android.view.WindowManagerGlobal;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.FrameLayout;
 import android.widget.DateTimeView;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RemoteViews;
@@ -533,7 +534,6 @@ public class StatusBar extends SystemUI implements DemoMode,
     // status bar notification ticker
     private int mTickerEnabled;
     private Ticker mTicker;
-    private View mTickerView;
     private boolean mTicking;
 
     private int mAmbientMediaPlaying;
@@ -1199,8 +1199,6 @@ public class StatusBar extends SystemUI implements DemoMode,
                     mStatusBarView.setScrimController(mScrimController);
                     mStatusBarView.setBouncerShowing(mBouncerShowing);
                     mStatusBarContent = (LinearLayout) mStatusBarView.findViewById(R.id.status_bar_contents);
-                    updateTickerSettings();
-                    initTickerView();
                     mCenterClockLayout = mStatusBarView.findViewById(R.id.center_clock_layout);
                     setAreThereNotifications();
                     checkBarModes();
@@ -1825,24 +1823,19 @@ public class StatusBar extends SystemUI implements DemoMode,
         return mStatusBarWindow;
     }
 
-    private void initTickerView() {
-        if (mStatusBarView != null && mTickerEnabled != 0 && mTicker == null) {
-            final ViewStub tickerStub = (ViewStub) mStatusBarView.findViewById(R.id.ticker_stub);
-            if (tickerStub != null) {
-                mTickerView = tickerStub.inflate();
-                mTicker = new MyTicker(mContext, mStatusBarView);
-
-                TickerView tickerView = (TickerView) mStatusBarView.findViewById(R.id.tickerText);
-                tickerView.mTicker = mTicker;
-            }
+    public void createTicker(
+            int tickerMode, Context ctx, View statusBarView, TickerView tickerTextView, ImageSwitcher tickerIcon, View tickerView) {
+        mTickerEnabled = tickerMode;
+        if (mTicker == null) {
+            mTicker = new MyTicker(ctx, statusBarView);
         }
+        ((MyTicker)mTicker).setView(tickerView);
+        tickerTextView.setTicker(mTicker);
+        mTicker.setViews(tickerTextView, tickerIcon);
     }
 
-    private void refreshTicker() {
-        haltTicker();
-        if (mStatusBarView != null && mTickerEnabled != 0 && mTicker != null) {
-                mTicker.setStatusBarView(mStatusBarView);
-        }
+    public void disableTicker() {
+        mTickerEnabled = 0;
     }
 
     public int getStatusBarHeight() {
@@ -3986,11 +3979,19 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     private class MyTicker extends Ticker {
+
+        // the inflated ViewStub
+        public View mTickerView;
+
         MyTicker(Context context, View sb) {
             super(context, sb);
             if (mTickerEnabled == 0) {
                 Log.w(TAG, "MyTicker instantiated with mTickerEnabled=0", new Throwable());
             }
+        }
+
+        public void setView(View tv) {
+            mTickerView = tv;
         }
 
         @Override
@@ -4027,8 +4028,10 @@ public class StatusBar extends SystemUI implements DemoMode,
                 mCenterClockLayout.setVisibility(View.VISIBLE);
                 mCenterClockLayout.startAnimation(loadAnim(false, null));
             }
-            mTickerView.setVisibility(View.GONE);
-            // we do not animate the ticker away at this point, just get rid of it (b/6992707)
+            if (mTickerView != null) {
+                mTickerView.setVisibility(View.GONE);
+                // we do not animate the ticker away at this point, just get rid of it (b/6992707)
+            }
         }
 
         @Override
@@ -4081,7 +4084,6 @@ public class StatusBar extends SystemUI implements DemoMode,
             pw.println("  mTickerEnabled=" + mTickerEnabled);
             if (mTickerEnabled != 0) {
                 pw.println("  mTicking=" + mTicking);
-                pw.println("  mTickerView: " + viewInfo(mTickerView));
             }
             pw.println("  mTracking=" + mTracking);
             pw.println("  mDisplayMetrics=" + mDisplayMetrics);
@@ -6565,10 +6567,6 @@ public class StatusBar extends SystemUI implements DemoMode,
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             update();
-        }
-
-        @Override
-            public void onChange(boolean selfChange) {
         }
 
         public void update() {
