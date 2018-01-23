@@ -5098,6 +5098,13 @@ public final class Settings {
         public static final String SHOW_LTE_FOURGEE = "show_lte_fourgee";
 
         /**
+         * Lockscreen Visualizer
+         *
+         * @hide
+         */
+        public static final String LOCKSCREEN_VISUALIZER_ENABLED = "lockscreen_visualizer";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5161,7 +5168,8 @@ public final class Settings {
             STATUSBAR_CLOCK_DATE_DISPLAY,
             STATUSBAR_CLOCK_DATE_STYLE,
             STATUSBAR_CLOCK_DATE_FORMAT,
-            STATUSBAR_CLOCK_DATE_POSITION
+            STATUSBAR_CLOCK_DATE_POSITION,
+            LOCKSCREEN_VISUALIZER_ENABLED
         };
 
         /**
@@ -5349,10 +5357,11 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_FORMAT);
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_POSITION);
             PRIVATE_SETTINGS.add(FP_WAKE_AND_UNLOCK);
-   PRIVATE_SETTINGS.add(TOAST_ICON);
+            PRIVATE_SETTINGS.add(TOAST_ICON);
             PRIVATE_SETTINGS.add(HIDE_LOCKSCREEN_STATUS_BAR);
             PRIVATE_SETTINGS.add(HIDE_LOCKSCREEN_INDICATOR_DISPLAY);
-	    PRIVATE_SETTINGS.add(HIDE_LOCKSCREEN_ICON);
+	        PRIVATE_SETTINGS.add(HIDE_LOCKSCREEN_ICON);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_VISUALIZER_ENABLED);
         }
 
         /**
