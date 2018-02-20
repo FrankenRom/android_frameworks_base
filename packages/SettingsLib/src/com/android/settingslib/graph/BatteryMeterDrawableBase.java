@@ -273,6 +273,9 @@ public class BatteryMeterDrawableBase extends Drawable {
         mWarningTextPaint.setTextSize(mHeight * 0.75f);
         mWarningTextHeight = -mWarningTextPaint.getFontMetrics().ascent;
 
+        mWarningTextPaint.setTextSize(mHeight * 0.75f);
+        mWarningTextHeight = -mWarningTextPaint.getFontMetrics().ascent;
+
         switch (mMeterStyle) {
             case BATTERY_STYLE_PORTRAIT:
             case BATTERY_STYLE_LANDSCAPE:
