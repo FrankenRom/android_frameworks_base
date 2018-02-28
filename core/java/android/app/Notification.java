@@ -2856,7 +2856,7 @@ public class Notification implements Parcelable
                         == Configuration.UI_MODE_NIGHT_YES;
             }
             // UI_MODE_NIGHT doesnt seem to be ready, so just listen to config
-            mInNightMode = getColorUtil().getNightModeNotification(mContext);
+            mInNightMode = res.getBoolean(R.bool.config_enableNightMode);
 
             if (toAdopt == null) {
                 mN = new Notification();
