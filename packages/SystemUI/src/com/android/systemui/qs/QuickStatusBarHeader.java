@@ -371,6 +371,7 @@ public class QuickStatusBarHeader extends FrameLayout implements StatusBarHeader
             ContentResolver resolver = mContext.getContentResolver();
             mMiniMode = Settings.System.getIntForUser(resolver,
                     Settings.System.QS_SHOW_MINI, 0, UserHandle.USER_CURRENT) == 1;
+            findViewById(R.id.quick_status_bar_icons).setVisibility(mMiniMode ? GONE : VISIBLE);
             updateHeaderLayout();
             updateQsPanelLayout();
             updateQuickBarLayout();
