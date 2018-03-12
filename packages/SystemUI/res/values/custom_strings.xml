@@ -229,4 +229,8 @@
 <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_running_services">Open Running Services screen.</string>
 
+    <!-- QS Mini mode -->
+    <string name="qs_show_mini">Mini mode</string>
+    <string name="qs_header">Header</string>
+
 </resources>
