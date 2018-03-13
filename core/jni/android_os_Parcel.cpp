@@ -43,7 +43,6 @@
 
 #include <nativehelper/ScopedUtfChars.h>
 #include <nativehelper/ScopedLocalRef.h>
-#include <nativehelper/jni_macros.h>
 
 #include <android_runtime/AndroidRuntime.h>
 
@@ -166,7 +165,7 @@ static void android_os_Parcel_restoreAllowFds(jlong nativePtr, jboolean lastValu
 }
 
 static void android_os_Parcel_writeByteArray(JNIEnv* env, jclass clazz, jlong nativePtr,
-                                             jbyteArray data, jint offset, jint length)
+                                             jobject data, jint offset, jint length)
 {
     Parcel* parcel = reinterpret_cast<Parcel*>(nativePtr);
     if (parcel == NULL) {
@@ -192,7 +191,7 @@ static void android_os_Parcel_writeByteArray(JNIEnv* env, jclass clazz, jlong na
     }
 }
 
-static void android_os_Parcel_writeBlob(JNIEnv* env, jclass clazz, jlong nativePtr, jbyteArray data,
+static void android_os_Parcel_writeBlob(JNIEnv* env, jclass clazz, jlong nativePtr, jobject data,
                                         jint offset, jint length) {
     Parcel* parcel = reinterpret_cast<Parcel*>(nativePtr);
     if (parcel == NULL) {
@@ -348,7 +347,7 @@ static jbyteArray android_os_Parcel_createByteArray(JNIEnv* env, jclass clazz, j
 }
 
 static jboolean android_os_Parcel_readByteArray(JNIEnv* env, jclass clazz, jlong nativePtr,
-                                                jbyteArray dest, jint destLen)
+                                                jobject dest, jint destLen)
 {
     jboolean ret = JNI_FALSE;
     Parcel* parcel = reinterpret_cast<Parcel*>(nativePtr);
@@ -761,79 +760,77 @@ static jlong android_os_Parcel_getBlobAshmemSize(jlong nativePtr)
 
 static const JNINativeMethod gParcelMethods[] = {
     // @CriticalNative
-    MAKE_JNI_CRITICAL_NATIVE_METHOD_AUTOSIG("nativeDataSize",     android_os_Parcel_dataSize),
+    {"nativeDataSize",            "(J)I", (void*)android_os_Parcel_dataSize},
     // @CriticalNative
-    MAKE_JNI_CRITICAL_NATIVE_METHOD_AUTOSIG("nativeDataAvail",    android_os_Parcel_dataAvail),
+    {"nativeDataAvail",           "(J)I", (void*)android_os_Parcel_dataAvail},
     // @CriticalNative
-    MAKE_JNI_CRITICAL_NATIVE_METHOD_AUTOSIG("nativeDataPosition", android_os_Parcel_dataPosition),
+    {"nativeDataPosition",        "(J)I", (void*)android_os_Parcel_dataPosition},
     // @CriticalNative
-    MAKE_JNI_CRITICAL_NATIVE_METHOD_AUTOSIG("nativeDataCapacity", android_os_Parcel_dataCapacity),
+    {"nativeDataCapacity",        "(J)I", (void*)android_os_Parcel_dataCapacity},
     // @FastNative
-    MAKE_JNI_FAST_NATIVE_METHOD_AUTOSIG(    "nativeSetDataSize",  android_os_Parcel_setDataSize),
+    {"nativeSetDataSize",         "(JI)J", (void*)android_os_Parcel_setDataSize},
     // @CriticalNative
-    MAKE_JNI_CRITICAL_NATIVE_METHOD_AUTOSIG("nativeSetDataPosition",
-                                                                  android_os_Parcel_setDataPosition),
+    {"nativeSetDataPosition",     "(JI)V", (void*)android_os_Parcel_setDataPosition},
     // @FastNative
-    MAKE_JNI_FAST_NATIVE_METHOD_AUTOSIG(    "nativeSetDataCapacity",
-                                                                  android_os_Parcel_setDataCapacity),
-    // @CriticalNative
-    MAKE_JNI_CRITICAL_NATIVE_METHOD_AUTOSIG("nativePushAllowFds", android_os_Parcel_pushAllowFds),
-    // @CriticalNative
-    MAKE_JNI_CRITICAL_NATIVE_METHOD_AUTOSIG("nativeRestoreAllowFds",
-                                                                  android_os_Parcel_restoreAllowFds),
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(         "nativeWriteByteArray",
-                                                                  android_os_Parcel_writeByteArray),
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(         "nativeWriteBlob",    android_os_Parcel_writeBlob),
-    // @FastNative
-    MAKE_JNI_FAST_NATIVE_METHOD_AUTOSIG(    "nativeWriteInt",     android_os_Parcel_writeInt),
-    // @FastNative
-    MAKE_JNI_FAST_NATIVE_METHOD_AUTOSIG(    "nativeWriteLong",    android_os_Parcel_writeLong),
-    // @FastNative
-    MAKE_JNI_FAST_NATIVE_METHOD_AUTOSIG(    "nativeWriteFloat",   android_os_Parcel_writeFloat),
-    // @FastNative
-    MAKE_JNI_FAST_NATIVE_METHOD_AUTOSIG(    "nativeWriteDouble",  android_os_Parcel_writeDouble),
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(         "nativeWriteString",  android_os_Parcel_writeString),
-    MAKE_JNI_NATIVE_METHOD("nativeWriteStrongBinder", "(JLandroid/os/IBinder;)V", android_os_Parcel_writeStrongBinder),
-    MAKE_JNI_NATIVE_METHOD("nativeWriteFileDescriptor", "(JLjava/io/FileDescriptor;)J", android_os_Parcel_writeFileDescriptor),
-
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(      "nativeCreateByteArray", android_os_Parcel_createByteArray),
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(        "nativeReadByteArray", android_os_Parcel_readByteArray),
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(         "nativeReadBlob",     android_os_Parcel_readBlob),
-    // @CriticalNative
-    MAKE_JNI_CRITICAL_NATIVE_METHOD_AUTOSIG("nativeReadInt",      android_os_Parcel_readInt),
-    // @CriticalNative
-    MAKE_JNI_CRITICAL_NATIVE_METHOD_AUTOSIG("nativeReadLong",     android_os_Parcel_readLong),
-    // @CriticalNative
-    MAKE_JNI_CRITICAL_NATIVE_METHOD_AUTOSIG("nativeReadFloat",    android_os_Parcel_readFloat),
-    // @CriticalNative
-    MAKE_JNI_CRITICAL_NATIVE_METHOD_AUTOSIG("nativeReadDouble",   android_os_Parcel_readDouble),
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(         "nativeReadString",   android_os_Parcel_readString),
-    MAKE_JNI_NATIVE_METHOD("nativeReadStrongBinder", "(J)Landroid/os/IBinder;", android_os_Parcel_readStrongBinder),
-    MAKE_JNI_NATIVE_METHOD("nativeReadFileDescriptor", "(J)Ljava/io/FileDescriptor;", android_os_Parcel_readFileDescriptor),
-    MAKE_JNI_NATIVE_METHOD("openFileDescriptor", "(Ljava/lang/String;I)Ljava/io/FileDescriptor;", android_os_Parcel_openFileDescriptor),
-    MAKE_JNI_NATIVE_METHOD("dupFileDescriptor", "(Ljava/io/FileDescriptor;)Ljava/io/FileDescriptor;", android_os_Parcel_dupFileDescriptor),
-    MAKE_JNI_NATIVE_METHOD("closeFileDescriptor", "(Ljava/io/FileDescriptor;)V", android_os_Parcel_closeFileDescriptor),
-    MAKE_JNI_NATIVE_METHOD("clearFileDescriptor", "(Ljava/io/FileDescriptor;)V", android_os_Parcel_clearFileDescriptor),
-
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(         "nativeCreate",       android_os_Parcel_create),
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(         "nativeFreeBuffer",   android_os_Parcel_freeBuffer),
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(         "nativeDestroy",      android_os_Parcel_destroy),
-
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(         "nativeMarshall",     android_os_Parcel_marshall),
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(         "nativeUnmarshall",   android_os_Parcel_unmarshall),
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(         "nativeCompareData",  android_os_Parcel_compareData),
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(         "nativeAppendFrom",   android_os_Parcel_appendFrom),
-    // @CriticalNative
-    MAKE_JNI_CRITICAL_NATIVE_METHOD_AUTOSIG("nativeHasFileDescriptors",
-                                                                  android_os_Parcel_hasFileDescriptors),
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(  "nativeWriteInterfaceToken", android_os_Parcel_writeInterfaceToken),
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(     "nativeEnforceInterface", android_os_Parcel_enforceInterface),
-
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(         "getGlobalAllocSize", android_os_Parcel_getGlobalAllocSize),
-    MAKE_JNI_NATIVE_METHOD_AUTOSIG(         "getGlobalAllocCount",android_os_Parcel_getGlobalAllocCount),
+    {"nativeSetDataCapacity",     "(JI)V", (void*)android_os_Parcel_setDataCapacity},
 
     // @CriticalNative
-    MAKE_JNI_CRITICAL_NATIVE_METHOD_AUTOSIG("nativeGetBlobAshmemSize", android_os_Parcel_getBlobAshmemSize),
+    {"nativePushAllowFds",        "(JZ)Z", (void*)android_os_Parcel_pushAllowFds},
+    // @CriticalNative
+    {"nativeRestoreAllowFds",     "(JZ)V", (void*)android_os_Parcel_restoreAllowFds},
+
+    {"nativeWriteByteArray",      "(J[BII)V", (void*)android_os_Parcel_writeByteArray},
+    {"nativeWriteBlob",           "(J[BII)V", (void*)android_os_Parcel_writeBlob},
+    // @FastNative
+    {"nativeWriteInt",            "(JI)V", (void*)android_os_Parcel_writeInt},
+    // @FastNative
+    {"nativeWriteLong",           "(JJ)V", (void*)android_os_Parcel_writeLong},
+    // @FastNative
+    {"nativeWriteFloat",          "(JF)V", (void*)android_os_Parcel_writeFloat},
+    // @FastNative
+    {"nativeWriteDouble",         "(JD)V", (void*)android_os_Parcel_writeDouble},
+    {"nativeWriteString",         "(JLjava/lang/String;)V", (void*)android_os_Parcel_writeString},
+    {"nativeWriteStrongBinder",   "(JLandroid/os/IBinder;)V", (void*)android_os_Parcel_writeStrongBinder},
+    {"nativeWriteFileDescriptor", "(JLjava/io/FileDescriptor;)J", (void*)android_os_Parcel_writeFileDescriptor},
+
+    {"nativeCreateByteArray",     "(J)[B", (void*)android_os_Parcel_createByteArray},
+    {"nativeReadByteArray",       "(J[BI)Z", (void*)android_os_Parcel_readByteArray},
+    {"nativeReadBlob",            "(J)[B", (void*)android_os_Parcel_readBlob},
+    // @CriticalNative
+    {"nativeReadInt",             "(J)I", (void*)android_os_Parcel_readInt},
+    // @CriticalNative
+    {"nativeReadLong",            "(J)J", (void*)android_os_Parcel_readLong},
+    // @CriticalNative
+    {"nativeReadFloat",           "(J)F", (void*)android_os_Parcel_readFloat},
+    // @CriticalNative
+    {"nativeReadDouble",          "(J)D", (void*)android_os_Parcel_readDouble},
+    {"nativeReadString",          "(J)Ljava/lang/String;", (void*)android_os_Parcel_readString},
+    {"nativeReadStrongBinder",    "(J)Landroid/os/IBinder;", (void*)android_os_Parcel_readStrongBinder},
+    {"nativeReadFileDescriptor",  "(J)Ljava/io/FileDescriptor;", (void*)android_os_Parcel_readFileDescriptor},
+
+    {"openFileDescriptor",        "(Ljava/lang/String;I)Ljava/io/FileDescriptor;", (void*)android_os_Parcel_openFileDescriptor},
+    {"dupFileDescriptor",         "(Ljava/io/FileDescriptor;)Ljava/io/FileDescriptor;", (void*)android_os_Parcel_dupFileDescriptor},
+    {"closeFileDescriptor",       "(Ljava/io/FileDescriptor;)V", (void*)android_os_Parcel_closeFileDescriptor},
+    {"clearFileDescriptor",       "(Ljava/io/FileDescriptor;)V", (void*)android_os_Parcel_clearFileDescriptor},
+
+    {"nativeCreate",              "()J", (void*)android_os_Parcel_create},
+    {"nativeFreeBuffer",          "(J)J", (void*)android_os_Parcel_freeBuffer},
+    {"nativeDestroy",             "(J)V", (void*)android_os_Parcel_destroy},
+
+    {"nativeMarshall",            "(J)[B", (void*)android_os_Parcel_marshall},
+    {"nativeUnmarshall",          "(J[BII)J", (void*)android_os_Parcel_unmarshall},
+    {"nativeCompareData",         "(JJ)I", (void*)android_os_Parcel_compareData},
+    {"nativeAppendFrom",          "(JJII)J", (void*)android_os_Parcel_appendFrom},
+    // @CriticalNative
+    {"nativeHasFileDescriptors",  "(J)Z", (void*)android_os_Parcel_hasFileDescriptors},
+    {"nativeWriteInterfaceToken", "(JLjava/lang/String;)V", (void*)android_os_Parcel_writeInterfaceToken},
+    {"nativeEnforceInterface",    "(JLjava/lang/String;)V", (void*)android_os_Parcel_enforceInterface},
+
+    {"getGlobalAllocSize",        "()J", (void*)android_os_Parcel_getGlobalAllocSize},
+    {"getGlobalAllocCount",       "()J", (void*)android_os_Parcel_getGlobalAllocCount},
+
+    // @CriticalNative
+    {"nativeGetBlobAshmemSize",       "(J)J", (void*)android_os_Parcel_getBlobAshmemSize},
 };
 
 const char* const kParcelPathName = "android/os/Parcel";
