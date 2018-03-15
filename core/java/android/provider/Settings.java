@@ -4779,6 +4779,12 @@ public final class Settings {
         public static final String INCALL_NOTIFICATIONS_VIBRATE = "incall_notifications_vibrate";
 
         /**
+         * Stores the app to be launched if the user taps on the screenshot notification edit button
+         * @hide
+         */
+        public static final String SCREENSHOT_EDIT_USER_APP = "screenshot_edit_user_app";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
