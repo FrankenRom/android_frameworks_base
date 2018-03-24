@@ -2472,7 +2472,13 @@
          carrier provisioning. If false: hard disabled. If true: then depends on carrier
          provisioning, availability etc -->
     <bool name="config_carrier_wfc_ims_available">false</bool>
-
+     
+     <!-- Path to the library that contains a device specific key handler -->
+     <string name="config_deviceKeyHandlerLib" translatable="false"></string>
+     
+    <!-- Name of that key handler class -->
+     <string name="config_deviceKeyHandlerClass" translatable="false"></string>
+     
     <!-- Whether to use voip audio mode for ims call -->
     <bool name="config_use_voip_mode_for_ims">false</bool>
 
