@@ -265,10 +265,6 @@ import com.android.server.statusbar.StatusBarManagerInternal;
 import com.android.server.vr.VrManagerInternal;
 import com.android.server.wm.AppTransition;
 
-import dalvik.system.PathClassLoader;
-
-import dalivik.system.Dexclassloader;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -276,6 +272,8 @@ import java.io.PrintWriter;
 import java.lang.reflect.Constructor;
 import java.util.List;
 import java.lang.reflect.Constructor;
+
+import dalvik.system.PathClassLoader;
 
 /**
  * WindowManagerPolicy implementation for the Android phone UI.  This
