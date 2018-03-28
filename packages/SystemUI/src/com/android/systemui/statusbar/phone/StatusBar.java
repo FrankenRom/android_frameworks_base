@@ -715,6 +715,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                 // pulse colors already set by titckTrackInfo
                 mNavigationBar.setMediaPlaying(true);
             }
+            if (mSlimRecents != null) {
+                mSlimRecents.setMediaPlaying(true, currentPkg);
+            }
         } else {
             mEntryToRefresh = null;
             if (isAmbientContainerAvailable()) {
@@ -723,6 +726,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             mNoMan.setMediaPlaying(false);
             if (mNavigationBar != null) {
                 mNavigationBar.setMediaPlaying(false);
+            }
+            if (mSlimRecents != null) {
+                mSlimRecents.setMediaPlaying(false, "");
             }
         }
     }
@@ -734,6 +740,9 @@ public class StatusBar extends SystemUI implements DemoMode,
         for (int i = 0; i < N; i++) {
             final Entry entry = activeNotifications.get(i);
             if (entry.notification.getPackageName().equals(pkg)) {
+                if (mSlimRecents != null) {
+                    mSlimRecents.setMediaInfo(mMediaMetadata);
+                }
                 // NotificationInflater calls async MediaNotificationProcessoron to create notification
                 // colors and when finished will trigger AsyncInflationFinished for all registered callbacks
                 // like StatusBar. From there we'll send updated colors to Pulse
@@ -2004,6 +2013,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                     n.primaryTextColor, n.secondaryTextColor};
             if (mNavigationBar != null) {
                 mNavigationBar.setPulseColors(n.isColorizedMedia(), colors);
+            }
+            if (mSlimRecents != null) {
+                mSlimRecents.setMediaColors(n.isColorizedMedia(), colors);
             }
         }
     }
