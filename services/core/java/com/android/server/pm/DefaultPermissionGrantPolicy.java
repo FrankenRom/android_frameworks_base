@@ -830,6 +830,14 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(vendingPackage, STORAGE_PERMISSIONS, true, userId);
             }
 
+            // Google Markup
+            PackageParser.Package markupPackage = getSystemPackageLPr(
+                    "com.google.android.markup");
+            if (markupPackage != null && doesPackageSupportRuntimePermissions(markupPackage)) {
+                grantRuntimePermissionsLPw(markupPackage, STORAGE_PERMISSIONS, userId);
+            }
+
+
             // Project Fi
             PackageParser.Package fiPackage = getDefaultProviderAuthorityPackageLPr(
                     "com.google.android.apps.tycho", userId);
