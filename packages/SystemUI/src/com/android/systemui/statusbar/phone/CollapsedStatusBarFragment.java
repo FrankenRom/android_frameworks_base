@@ -48,6 +48,7 @@ import com.android.systemui.statusbar.policy.EncryptionHelper;
 import com.android.systemui.statusbar.policy.KeyguardMonitor;
 import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.NetworkController.SignalCallback;
+import com.android.systemui.statusbar.policy.NetworkTraffic;
 
 /**
  * Contains the collapsed status bar and handles hiding/showing based on disable flags
@@ -80,6 +81,8 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private View mWeatherImageView;
     private View mWeatherTextView;
     private int mShowWeather;
+
+    private NetworkTraffic mNetworkTraffic;
 
     private final Handler mHandler = new Handler();
 
@@ -124,6 +127,12 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
                     false, this, UserHandle.USER_ALL);
             mContentResolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUSBAR_SHOW_WEATHER_TEMP),
+                    false, this, UserHandle.USER_ALL);
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NETWORK_TRAFFIC_STATE),
+                    false, this, UserHandle.USER_ALL);
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD),
                     false, this, UserHandle.USER_ALL);
         }
 
@@ -185,6 +194,10 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         // Default to showing until we know otherwise.
         showSystemIconArea(false);
         initEmergencyCryptkeeperText();
+        mNetworkTraffic = mStatusBar.findViewById(R.id.networkTraffic);
+
+        mLiquidSettingsObserver.observe();
+        mLiquidSettingsObserver.onChange(true);
     }
 
     @Override
@@ -412,6 +425,8 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             ((Clock)mCenterClock).updateSettings();
             ((Clock)mLeftClock).updateSettings();
             mStatusBarComponent.updateBatterySettings();
+            mNetworkTraffic.setMode();
+            mNetworkTraffic.updateSettings();
         } catch (Exception e) {
             // never ever crash here
             Slog.e(TAG, "updateSettings(animate)", e);
