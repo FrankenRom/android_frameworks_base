@@ -62,6 +62,9 @@
     <color name="notification_gear_color">#ff757575</color>
     <color name="notification_guts_bg_color">#eeeeee</color>
     <color name="notification_snooze_text">#dd000000</color>
+	
+	<!-- Snackbar text color -->
+    <color name="updater_snackbar_text_color">@android:color/white</color>
 
     <!-- Toast text and bg colors -->
     <color name="toast_bg_color">#E6EEEEEE</color>
