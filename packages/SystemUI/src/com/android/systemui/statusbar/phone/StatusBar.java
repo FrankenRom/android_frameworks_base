@@ -1996,8 +1996,8 @@ public class StatusBar extends SystemUI implements DemoMode,
         if (mEntryToRefresh == entry) {
             final Notification n = entry.notification.getNotification();
             String notificationText = null;
-            final String title = n.extras.getString(Notification.EXTRA_TITLE);
-            final String text = n.extras.getString(Notification.EXTRA_TEXT);
+            String title = n.extras.getString(Notification.EXTRA_TITLE);
+            String text = n.extras.getString(Notification.EXTRA_TEXT);
             if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(text)) {
                 notificationText = title + " - " + text;
             }
@@ -2018,7 +2018,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                 if (icon != null) {
                     drawable = icon.loadDrawable(mContext);
                 }
-                mSlimRecents.setMediaColors(n.isColorizedMedia(), colors, drawable, mMediaMetadata);
+                title = n.extras.getString(Notification.EXTRA_TITLE);
+                text = n.extras.getString(Notification.EXTRA_TEXT);
+                mSlimRecents.setMedia(n.isColorizedMedia(), colors, drawable, mMediaMetadata, title, text);
             }
         }
     }
