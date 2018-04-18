@@ -141,7 +141,7 @@ public class SmartPixelsTile extends QSTileImpl<BooleanState> {
 
     @Override
     public int getMetricsCategory() {
-        return MetricsEvent.DIRTYTWEAKS;
+        return MetricsEvent.LIQUID;
     }
 
     private BroadcastReceiver mSmartPixelsReceiver = new BroadcastReceiver() {
