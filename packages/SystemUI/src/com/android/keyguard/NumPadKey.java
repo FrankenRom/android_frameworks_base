@@ -17,7 +17,9 @@
 package com.android.keyguard;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.provider.Settings;
@@ -34,6 +36,7 @@ import com.android.internal.widget.LockPatternUtils;
 public class NumPadKey extends ViewGroup {
     // list of "ABC", etc per digit, starting with '0'
     static String sKlondike[];
+    private static final String FONT_FAMILY = "sans-serif-light";
 
     private int mDigit = -1;
     private int mTextViewResId;
@@ -109,6 +112,13 @@ public class NumPadKey extends ViewGroup {
         }
         a.recycle();
         setContentDescription(mDigitText.getText().toString());
+    }
+
+    @Override
+    protected void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Typeface tf = Typeface.create(FONT_FAMILY, Typeface.NORMAL);
+        mDigitText.setTypeface(tf);
     }
 
     public void setDigit(int digit) {
