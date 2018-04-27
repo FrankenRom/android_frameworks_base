@@ -4712,10 +4712,11 @@ public final class Settings {
         public static final String HIDE_LOCKSCREEN_INDICATOR_DISPLAY = "hide_lockscreen_indicator_display";
 
         /**
+         * Hide lockscreen icon
          *
          * @hide
          */
-        public static final String NOTIFICATION_SOUND_VIB_SCREEN_ON = "notification_sound_vib_screen_on";
+        public static final String HIDE_LOCKSCREEN_ICON = "hide_lockscreen_icon";
 
         /**
          * Force an Ambient notification when a new media track is being played
@@ -5348,15 +5349,10 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_FORMAT);
             PRIVATE_SETTINGS.add(STATUSBAR_CLOCK_DATE_POSITION);
             PRIVATE_SETTINGS.add(FP_WAKE_AND_UNLOCK);
-            PRIVATE_SETTINGS.add(TOAST_ICON);
-<<<<<<< HEAD
-=======
-            PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_STATE);
-            PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE);
-            PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
+   PRIVATE_SETTINGS.add(TOAST_ICON);
             PRIVATE_SETTINGS.add(HIDE_LOCKSCREEN_STATUS_BAR);
             PRIVATE_SETTINGS.add(HIDE_LOCKSCREEN_INDICATOR_DISPLAY);
->>>>>>> 6740932... [1/2] base: hide indicator text
+	    PRIVATE_SETTINGS.add(HIDE_LOCKSCREEN_ICON);
         }
 
         /**
