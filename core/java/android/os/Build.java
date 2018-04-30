@@ -61,6 +61,9 @@ public class Build {
      * @hide
      */
     public static final String DATE = getString("ro.build.date");
+	
+    /** The vendor patch level. */
+    public static final String VENDOR_PATCH_LEVEL = getString("ro.vendor.patch.level");
 
     /**
      * The name of the instruction set (CPU type + ABI convention) of native code.
