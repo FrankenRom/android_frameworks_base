@@ -147,7 +147,7 @@
     <integer name="heads_up_notification_minimum_time">750</integer>
 
     <!-- milliseconds before the heads up notification accepts touches. -->
-    <integer name="touch_acceptance_delay">100</integer>
+    <integer name="touch_acceptance_delay">80</integer>
 
     <!-- The duration in seconds to wait before the dismiss buttons are shown. -->
     <integer name="recents_task_bar_dismiss_delay_seconds">1</integer>
@@ -168,10 +168,10 @@
     <integer name="recents_animate_task_stack_scroll_duration">100</integer>
 
     <!-- The animation duration for scrolling the stack to a particular item. -->
-    <integer name="recents_auto_advance_duration">200</integer>
+    <integer name="recents_auto_advance_duration">100</integer>
 
     <!-- The animation duration for subsequent scrolling the stack to a particular item. -->
-    <integer name="recents_subsequent_auto_advance_duration">1000</integer>
+    <integer name="recents_subsequent_auto_advance_duration">500</integer>
 
     <!-- The delay to enforce between each alt-tab key press. -->
     <integer name="recents_alt_tab_key_delay">100</integer>
@@ -184,7 +184,7 @@
     <bool name="recents_grow_in_multiwindow">true</bool>
 
     <!-- Animation duration when using long press on recents to dock -->
-    <integer name="long_press_dock_anim_duration">250</integer>
+    <integer name="long_press_dock_anim_duration">100</integer>
 
     <!-- Recents: The relative range of visible tasks from the current scroll position
          while the stack is focused. -->
