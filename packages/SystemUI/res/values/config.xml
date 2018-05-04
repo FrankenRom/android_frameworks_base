@@ -147,7 +147,7 @@
     <integer name="heads_up_notification_minimum_time">750</integer>
 
     <!-- milliseconds before the heads up notification accepts touches. -->
-    <integer name="touch_acceptance_delay">80</integer>
+    <integer name="touch_acceptance_delay">60</integer>
 
     <!-- The duration in seconds to wait before the dismiss buttons are shown. -->
     <integer name="recents_task_bar_dismiss_delay_seconds">1</integer>
@@ -162,16 +162,16 @@
     <integer name="recents_task_exit_to_app_duration">50</integer>
 
     <!-- The min animation duration for animating the nav bar scrim in. -->
-    <integer name="recents_nav_bar_scrim_enter_duration">150</integer>
+    <integer name="recents_nav_bar_scrim_enter_duration">100</integer>
 
     <!-- The animation duration for scrolling the stack to a particular item. -->
-    <integer name="recents_animate_task_stack_scroll_duration">100</integer>
+    <integer name="recents_animate_task_stack_scroll_duration">75</integer>
 
     <!-- The animation duration for scrolling the stack to a particular item. -->
-    <integer name="recents_auto_advance_duration">100</integer>
+    <integer name="recents_auto_advance_duration">75</integer>
 
     <!-- The animation duration for subsequent scrolling the stack to a particular item. -->
-    <integer name="recents_subsequent_auto_advance_duration">500</integer>
+    <integer name="recents_subsequent_auto_advance_duration">250</integer>
 
     <!-- The delay to enforce between each alt-tab key press. -->
     <integer name="recents_alt_tab_key_delay">100</integer>
@@ -184,7 +184,7 @@
     <bool name="recents_grow_in_multiwindow">true</bool>
 
     <!-- Animation duration when using long press on recents to dock -->
-    <integer name="long_press_dock_anim_duration">100</integer>
+    <integer name="long_press_dock_anim_duration">75</integer>
 
     <!-- Recents: The relative range of visible tasks from the current scroll position
          while the stack is focused. -->
@@ -259,10 +259,10 @@
     <integer name="doze_pulse_duration_in_pickup">130</integer>
 
     <!-- Doze: pulse parameter - once faded in, how long does it stay visible? -->
-    <integer name="doze_pulse_duration_visible">6000</integer>
+    <integer name="doze_pulse_duration_visible">5000</integer>
 
     <!-- Doze: pulse parameter - how long does it take to fade out? -->
-    <integer name="doze_pulse_duration_out">600</integer>
+    <integer name="doze_pulse_duration_out">400</integer>
 
     <!-- Doze: alpha to apply to small icons when dozing -->
     <integer name="doze_small_icon_alpha">222</integer><!-- 87% of 0xff -->
