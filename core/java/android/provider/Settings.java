@@ -4049,10 +4049,16 @@ public final class Settings {
         public static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
 
         /**
-        * Whether to show Qs panel footer warnings like for active VPN
-        * @hide
-        */
-       public static final String QS_FOOTER_WARNINGS = "qs_footer_warnings";
+         * Whether to show Qs panel footer warnings like for active VPN
+         * @hide
+         */
+        public static final String QS_FOOTER_WARNINGS = "qs_footer_warnings";
+
+        /**
+         * Whether to show or hide the running services icon
+         * @hide
+         */
+        public static final String QS_RUNNING_SERVICES_TOGGLE = "qs_running_services_toggle";
 
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
