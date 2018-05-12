@@ -148,4 +148,8 @@
     <java-symbol type="anim" name="recent_screen_fade_out" />
     <java-symbol type="anim" name="recent_enter" />
 
+  <!-- Full screen aspect ratio -->
+  <java-symbol type="bool" name="config_haveHigherAspectRatioScreen" />
+  <java-symbol type="dimen" name="config_screenAspectRatio" />
+
 </resources>
