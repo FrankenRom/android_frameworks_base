@@ -1580,7 +1580,9 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
                     .setUpdateListener(animation -> {
                         int alpha = (int) ((Float) animation.getAnimatedValue()
                                 * ScrimController.GRADIENT_SCRIM_ALPHA * 255);
-                        mGradientDrawable.setAlpha(alpha);
+                        int transparent = (int) ((Float) animation.getAnimatedValue()
+                                * ScrimController.CUSTOM_GRADIENT_SCRIM_ALPHA * 255);
+                        mGradientDrawable.setAlpha(showWallpaperTint(mContext) ? alpha : transparent);
                     })
                     .withEndAction(() -> getWindow().getDecorView().requestAccessibilityFocus())
                     .start();
@@ -1599,7 +1601,9 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
                     .setUpdateListener(animation -> {
                         int alpha = (int) ((1f - (Float) animation.getAnimatedValue())
                                 * ScrimController.GRADIENT_SCRIM_ALPHA * 255);
-                        mGradientDrawable.setAlpha(alpha);
+                        int transparent = (int) ((1f - (Float) animation.getAnimatedValue())
+                                * ScrimController.CUSTOM_GRADIENT_SCRIM_ALPHA * 255);
+                        mGradientDrawable.setAlpha(showWallpaperTint(mContext) ? alpha : transparent);
                     })
                     .start();
         }
@@ -1639,5 +1643,10 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
         public void setKeyguardShowing(boolean keyguardShowing) {
             mKeyguardShowing = keyguardShowing;
         }
+    }
+
+    private static boolean showWallpaperTint(Context context) {
+        return Settings.System.getIntForUser(context.getContentResolver(),
+                Settings.System.WALLPAPER_POWER_MENU_TINT, 1, UserHandle.USER_CURRENT) == 1;
     }
 }
