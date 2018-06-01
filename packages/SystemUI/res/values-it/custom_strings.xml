@@ -35,6 +35,15 @@
     <string name="accessibility_quick_settings_caffeine_off">Caffeine spenta</string>
     <string name="accessibility_quick_settings_caffeine_on">Caffeine accesa</string>
 
+    <!-- Compass QS Tile -->
+    <string name="quick_settings_compass_label">Bussola</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Initializing\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Bussola spenta</string>
+    <string name="accessibility_quick_settings_compass_on">Bussola accesa</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Bussola disattivata</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Bussola attivata</string>
+    
     <!-- Advanced reboot -->
     <string name="global_action_restart_advanced">Riavvio avanzato</string>
     <string name="global_action_screenrecord">Registra schermo</string>
@@ -137,7 +146,7 @@
     <string name="qs_menu_item_scroll">Scorrimento rapido</string>
 
     <!-- Sync QS Tile -->
-    <string name="quick_settings_sync_label">Sync</string>
+    <string name="quick_settings_sync_label">Sincronizzazione</string>
     <string name="accessibility_quick_settings_sync_off">Sincronizzazione spenta</string>
     <string name="accessibility_quick_settings_sync_on">Sincronizzazione accesa</string>
     <string name="accessibility_quick_settings_sync_changed_off">Sincronizzazione disattivata</string>
@@ -195,4 +204,32 @@
     <!-- Caffeine tile -->
     <string name="caffeine_info_title">Cos\'è questo?</string>
     <string name="caffeine_info_message">Il tile Caffeina ti permette di mantenere lo schermo acceso finchè non viene disattivata.\n\nLa tile viene disattivata automaticamente se lo schermo viene spento.</string>
+
+    <!-- Kill button in notification guts -->
+    <string name="force_stop_dlg_title">Forzare l\'interruzione?</string>
+    <string name="force_stop_dlg_text">Se forzate l\'interruzione di un\'app, potrebbe comportarsi in modo anomalo.</string>
+    <string name="dlg_ok">@android:string/ok</string>
+    <string name="dlg_cancel">@android:string/cancel</string>
+    <string name="kill">Teermina app</string>
+    
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_running_services">Apri la schermata dei servizi in esecuzione.</string>
+    
+    <!-- QS Mini mode -->
+    <string name="qs_show_mini">Modalità Mini</string>
+    <string name="qs_header">Intestazione</string>
+    
+    <!-- SmartPixels QS Tile -->
+    <string name="quick_settings_smart_pixels">Smart Pixels</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Abilita automaticamente Smart Pixels</string>
+    
+    <!-- Music tile -->
+    <string name="quick_settings_music_label">Musica</string>
+    <string name="quick_settings_music_play">Riproduci</string>
+    <string name="quick_settings_music_pause">Pausa</string>
+    
+    <!-- Assist/Google Tiles -->
+    <string name="quick_settings_google_assist_label">Assistente</string>
+    <string name="quick_settings_google_voice_assist_label">Assistente vocale</string>
+    <string name="quick_settings_google_now_label">Google</string>
 </resources>
