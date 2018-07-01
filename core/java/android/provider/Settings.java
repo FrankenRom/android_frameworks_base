@@ -4815,6 +4815,12 @@ public final class Settings {
         public static final Validator STATUSBAR_CLOCK_DATE_STYLE_VALIDATOR =
                 new InclusiveIntegerRangeValidator(0, 2);
 
+         /** 
+         * Dim volume dialog 
+         * @hide 
+         */ 
+        public static final String TRANSPARENT_VOLUME_DIALOG_DIM = "transparent_volume_dialog_dim"; 
+
         /**
          * Stores the java DateFormat string for the date
          * @hide
