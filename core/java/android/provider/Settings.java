@@ -5286,11 +5286,6 @@ public final class Settings {
         public static final String DIALER_OPENCNAM_AUTH_TOKEN = "dialer_opencnam_auth_token";
 
         /**
-         * @hide
-         */
-        public static final String USE_BOTTOM_GESTURE_NAVIGATION = "use_bottom_gesture_navigation";
-
-        /**
          * These are all public system settings
          *
          * @hide
@@ -5415,7 +5410,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(HIDE_LOCKSCREEN_INDICATOR_DISPLAY);
 	        PRIVATE_SETTINGS.add(HIDE_LOCKSCREEN_ICON);
             PRIVATE_SETTINGS.add(LOCKSCREEN_VISUALIZER_ENABLED);
-            PRIVATE_SETTINGS.add(USE_BOTTOM_GESTURE_NAVIGATION);
         }
 
         /**
