@@ -2996,10 +2996,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
             updateNavigationBarSize();
 
-            mOmniSwitchRecents = Settings.System.getIntForUser(resolver,
-                    Settings.System.RECENTS_OMNI_SWITCH_ENABLED, 0,
-                    UserHandle.USER_CURRENT) == 1;
-
    	    mUseGestureButton = Settings.System.getIntForUser(resolver,
                     Settings.System.USE_BOTTOM_GESTURE_NAVIGATION, 0,
                     UserHandle.USER_CURRENT) != 0;
@@ -4859,7 +4855,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 statusbar.toggleRecentApps();
             }
         }
-    }
 
     @Override
     public void showRecentApps(boolean fromHome) {
