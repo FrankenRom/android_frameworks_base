@@ -2576,6 +2576,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     public void onTrustedChanged() {
                         mWindowManagerFuncs.notifyKeyguardTrustedChanged();
                     }
+
+                    @Override
+                    public void onShowingChanged() {
+                        mWindowManagerFuncs.onKeyguardShowingAndNotOccludedChanged();
+                    }
                 });
 
         String deviceKeyHandlerLib = mContext.getResources().getString(
