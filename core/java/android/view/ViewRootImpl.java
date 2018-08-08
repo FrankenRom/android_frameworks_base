@@ -139,11 +139,9 @@ public final class ViewRootImpl implements ViewParent,
     private static final boolean DEBUG_INPUT_STAGES = false || LOCAL_LOGV;
     private static final boolean DEBUG_KEEP_SCREEN_ON = false || LOCAL_LOGV;
 
-    private static final int GESTURE_BUTTON_HEIGHT = 20;
-    private static final int GESTURE_KEY_DISTANCE_THRESHOLD = 60;
-    private static final int GESTURE_KEY_LONG_CLICK_MOVE = 20;
-    private static final int GESTURE_MOTION_QUEUE_DELAY = 200;
-    private static final int GESTURE_MOTION_SLOW_MOVE_TIME = 400;
+    private static final float GESTURE_KEY_DISTANCE_THRESHOLD = 80.0f;
+    private static final float GESTURE_KEY_LONG_CLICK_MOVE = 50.0f;
+    private static final long GESTURE_MOTION_QUEUE_DELAY = 200;
     private static final int MSG_GESTURE_MOTION_DOWN = 5566;
     private boolean mCheckForGestureButton = false;
     private boolean mGestureButtonActive = false;
@@ -4915,7 +4913,7 @@ public final class ViewRootImpl implements ViewParent,
                                 if (event.getEventTime() - event.getDownTime() > 400) {
                                     swipeTimeoSlow = true;
                                 }
-                                int threshold = ViewRootImpl.GESTURE_KEY_DISTANCE_THRESHOLD;
+                                float threshold = ViewRootImpl.GESTURE_KEY_DISTANCE_THRESHOLD;
                                 if (rotation == 0 || rotation == 2) {
                                     if (event.getRawX() > ((float) mOneThirdPart) && event.getRawX() < ((float) (mOneThirdPart * 2))) {
                                         threshold = ViewRootImpl.GESTURE_KEY_LONG_CLICK_MOVE;
